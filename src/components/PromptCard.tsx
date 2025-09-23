@@ -80,7 +80,7 @@ export const PromptCard = ({ title, description, category, tags, prompt }: Promp
 
         {/* Prompt Preview */}
         <div className="bg-muted rounded-lg p-3 border">
-          <p className="text-sm text-muted-foreground font-mono leading-relaxed line-clamp-3">
+          <p className="text-sm text-muted-foreground font-mono leading-relaxed whitespace-pre-wrap break-words">
             {prompt}
           </p>
         </div>
