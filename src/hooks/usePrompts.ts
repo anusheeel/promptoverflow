@@ -1,8 +1,16 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import type { Database } from "@/integrations/supabase/types";
 
-type Prompt = Database['public']['Tables']['prompts']['Row'];
+export interface Prompt {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  tags: string[];
+  prompt: string;
+  created_at?: string;
+  updated_at?: string;
+}
 
 export const usePrompts = () => {
   const [prompts, setPrompts] = useState<Prompt[]>([]);
