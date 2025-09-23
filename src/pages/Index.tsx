@@ -3,18 +3,41 @@ import { SearchBar } from "@/components/SearchBar";
 import { CategoryFilter } from "@/components/CategoryFilter";
 import { PromptCard } from "@/components/PromptCard";
 import { EmptyState } from "@/components/EmptyState";
-import { mockPrompts, getUniqueCategories, filterPrompts } from "@/data/mockPrompts";
-import { Sparkles } from "lucide-react";
+import { usePrompts, getUniqueCategories, filterPrompts } from "@/hooks/usePrompts";
+import { Sparkles, Loader2 } from "lucide-react";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const { prompts, loading, error } = usePrompts();
 
-  const categories = useMemo(() => getUniqueCategories(mockPrompts), []);
+  const categories = useMemo(() => getUniqueCategories(prompts), [prompts]);
   const filteredPrompts = useMemo(
-    () => filterPrompts(mockPrompts, searchQuery, selectedCategory),
-    [searchQuery, selectedCategory]
+    () => filterPrompts(prompts, searchQuery, selectedCategory),
+    [prompts, searchQuery, selectedCategory]
   );
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="flex items-center gap-2 text-muted-foreground">
+          <Loader2 className="h-6 w-6 animate-spin" />
+          <span>Loading prompts...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-xl font-semibold text-foreground mb-2">Error loading prompts</h2>
+          <p className="text-muted-foreground">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
