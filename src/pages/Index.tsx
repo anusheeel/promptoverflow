@@ -57,7 +57,7 @@ const Index = () => {
             <h1 className="text-3xl font-bold text-foreground">Prompt Overflow</h1>
           </div>
           <p className="text-muted-foreground text-lg">
-            Community-curated collection of effective AI prompts
+            Do you even prompt bro !
           </p>
         </div>
       </header>
