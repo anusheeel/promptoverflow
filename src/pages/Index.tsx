@@ -75,6 +75,7 @@ const Index = () => {
             categories={categories}
             selectedCategory={selectedCategory}
             onCategorySelect={setSelectedCategory}
+            suggestions={suggestions} 
           />
         </div>
 
