@@ -26,7 +26,7 @@ export const PromptCard = ({ title, description, category, tags, prompt }: Promp
   };
 
   return (
-    <article className="group bg-gradient-card rounded-xl border border-border p-6 shadow-soft hover:shadow-medium transition-all duration-200 hover:-translate-y-1">
+    <article className="group bg-gradient-card rounded-xl border border-border p-6 shadow-soft hover:shadow-medium transition-all duration-200 hover:-translate-y-1 h-full flex flex-col">
       <div className="flex flex-col h-full">
         {/* Header */}
         <div className="flex items-start justify-between gap-3 mb-3">
@@ -79,7 +79,7 @@ export const PromptCard = ({ title, description, category, tags, prompt }: Promp
         )}
 
         {/* Prompt Preview */}
-        <div className="bg-muted rounded-lg p-3 border">
+        <div className="bg-muted rounded-lg p-3 border mt-auto">
           <p className="text-sm text-muted-foreground font-mono leading-relaxed whitespace-pre-wrap break-words">
             {prompt}
           </p>
