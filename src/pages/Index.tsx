@@ -70,12 +70,13 @@ const Index = () => {
             value={searchQuery}
             onChange={setSearchQuery}
             placeholder="Search prompts by title, description, or tags..."
+            suggestions={suggestions}
           />
           <CategoryFilter
             categories={categories}
             selectedCategory={selectedCategory}
             onCategorySelect={setSelectedCategory}
-            suggestions={suggestions} 
+             
           />
         </div>
 
