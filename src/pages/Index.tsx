@@ -16,6 +16,12 @@ const Index = () => {
     () => filterPrompts(prompts, searchQuery, selectedCategory),
     [prompts, searchQuery, selectedCategory]
   );
+  // 🔥 Generate suggestions: titles + tags + categories
+  const suggestions = useMemo(() => {
+    const titles = prompts.map((p) => p.title);
+    const tags = prompts.flatMap((p) => p.tags || []);
+    return Array.from(new Set([...titles, ...tags, ...categories])); // deduped
+  }, [prompts, categories]);
 
   if (loading) {
     return (
