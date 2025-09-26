@@ -55,7 +55,7 @@ const Index = () => {
       <header className="bg-gradient-card border-b border-border">
         <div className="container mx-auto">
           {/* ✅ Logo + sub tagline stacked */}
-          <div className="flex flex-col">
+          <div className="flex flex-col -mt-10">
             <a href="/" className="inline-block">
               <img
                 src="/pof_logo.png"
@@ -65,7 +65,7 @@ const Index = () => {
                 className="cursor-pointer"
               />
             </a>
-            <p className="text-muted-foreground text-lg -mt-12">
+            <p className="text-muted-foreground text-lg -mt-16">
               Do you even prompt bro !
             </p>
           </div>
