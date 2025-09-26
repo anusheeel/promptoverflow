@@ -60,12 +60,12 @@ const Index = () => {
               <img
                 src="/pof_logo.png"
                 alt="Prompt Overflow Logo"
-                width={130}   // made bigger
+                width={160}   // made bigger
                 height={20}
                 className="cursor-pointer"
               />
             </a>
-            <p className="text-muted-foreground text-lg -mt-16">
+            <p className="text-muted-foreground text-lg -mt-12">
               Do you even prompt bro !
             </p>
           </div>
