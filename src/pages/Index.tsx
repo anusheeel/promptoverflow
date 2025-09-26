@@ -5,7 +5,6 @@ import { PromptCard } from "@/components/PromptCard";
 import { EmptyState } from "@/components/EmptyState";
 import { usePrompts, getUniqueCategories, filterPrompts } from "@/hooks/usePrompts";
 import { Loader2 } from "lucide-react";
-import Link from "next/link";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -57,15 +56,15 @@ const Index = () => {
         <div className="container mx-auto px-4 py-6">
           {/* ✅ Logo + sub tagline stacked */}
           <div className="flex flex-col items-center mb-6">
-            <Link href="/">
+            <a href="/" className="inline-block">
               <img
                 src="/pof_logo.png"
                 alt="Prompt Overflow Logo"
-                width={120}
-                height={120}
+                width={140}   // made bigger
+                height={140}
                 className="cursor-pointer"
               />
-            </Link>
+            </a>
             <p className="text-muted-foreground text-lg mt-2">
               Do you even prompt bro !
             </p>
@@ -73,7 +72,7 @@ const Index = () => {
 
           {/* ✅ Hero tagline, slightly smaller */}
           <div className="flex justify-center">
-            <h1 className="text-foreground text-2xl md:text-3xl font-semibold text-center max-w-2xl">
+            <h1 className="text-foreground text-xl md:text-2xl font-semibold text-center max-w-2xl">
               Learn, grow and create one prompt at a time
             </h1>
           </div>
