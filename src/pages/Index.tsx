@@ -53,7 +53,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-gradient-card border-b border-border">
-        <div className="container mx-auto px-4 py-10 flex flex-col items-center">
+        <div className="container mx-auto px-4 py-10 flex flex-col">
           {/* ✅ Big Logo only */}
           <img
             src="/pof_logo.png"
@@ -64,7 +64,7 @@ const Index = () => {
           />
 
           {/* Sub tagline */}
-          <p className="text-muted-foreground text-lg mb-4 text-center">
+          <p className="text-muted-foreground text-lg mb-4">
             Do you even prompt bro !
           </p>
 
