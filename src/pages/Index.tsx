@@ -66,7 +66,7 @@ const Index = () => {
               />
             </a>
             <p className="text-muted-foreground text-lg -mt-16">
-              Do you even prompt bro !
+              Do you even prompt bro ?
             </p>
           </div>
 
