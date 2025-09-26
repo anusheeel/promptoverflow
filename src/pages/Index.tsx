@@ -47,20 +47,36 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="bg-gradient-card border-b border-border">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 rounded-lg bg-gradient-primary">
-              <Sparkles className="h-6 w-6 text-white" />
-            </div>
-            <h1 className="text-3xl font-bold text-foreground">Prompt Overflow</h1>
-          </div>
-          <p className="text-muted-foreground text-lg">
-            Do you even prompt bro !
-          </p>
-        </div>
-      </header>
+  <div className="container mx-auto px-4 py-10 text-center">
+    {/* Logo + Title */}
+    <div className="flex items-center justify-center gap-3 mb-3">
+      <div className="p-2 rounded-lg bg-gradient-primary">
+        <Sparkles className="h-6 w-6 text-white" />
+      </div>
+      <h1 className="text-3xl font-bold text-foreground">Prompt Overflow</h1>
+    </div>
+
+    {/* Tagline */}
+    <p className="text-muted-foreground text-lg mb-4">
+      Do you even prompt bro!
+    </p>
+
+    {/* Inspiring Lines */}
+    <div className="max-w-2xl mx-auto space-y-2">
+      <p className="text-foreground text-base">
+        🚀 Prompting is the new superpower — the language of the future.
+      </p>
+      <p className="text-muted-foreground text-base">
+        Every great prompt is a shortcut to learning, growth, and creativity.
+      </p>
+      <p className="text-muted-foreground text-base">
+        Read one you didn’t know before — and you’ll level up instantly.
+      </p>
+    </div>
+  </div>
+</header>
+
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
