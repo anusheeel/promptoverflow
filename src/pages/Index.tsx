@@ -16,13 +16,15 @@ const Index = () => {
     () => filterPrompts(prompts, searchQuery, selectedCategory),
     [prompts, searchQuery, selectedCategory]
   );
-  // 🔥 Generate suggestions: titles + tags + categories
+
+  // 🔥 Suggestions for search autocomplete
   const suggestions = useMemo(() => {
     const titles = prompts.map((p) => p.title);
     const tags = prompts.flatMap((p) => p.tags || []);
-    return Array.from(new Set([...titles, ...tags, ...categories])); // deduped
+    return Array.from(new Set([...titles, ...tags, ...categories]));
   }, [prompts, categories]);
 
+  // Loading state
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -34,11 +36,14 @@ const Index = () => {
     );
   }
 
+  // Error state
   if (error) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-xl font-semibold text-foreground mb-2">Error loading prompts</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-2">
+            Error loading prompts
+          </h2>
           <p className="text-muted-foreground">{error}</p>
         </div>
       </div>
@@ -47,36 +52,38 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Header */}
       <header className="bg-gradient-card border-b border-border">
-  <div className="container mx-auto px-4 py-10 text-center">
-    {/* Logo + Title */}
-    <div className="flex items-center justify-center gap-3 mb-3">
-      <div className="p-2 rounded-lg bg-gradient-primary">
-        <Sparkles className="h-6 w-6 text-white" />
-      </div>
-      <h1 className="text-3xl font-bold text-foreground">Prompt Overflow</h1>
-    </div>
+        <div className="container mx-auto px-4 py-10 text-center">
+          {/* Logo + Title */}
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <div className="p-2 rounded-lg bg-gradient-primary">
+              <Sparkles className="h-6 w-6 text-white" />
+            </div>
+            <h1 className="text-3xl font-bold text-foreground">
+              Prompt Overflow
+            </h1>
+          </div>
 
-    {/* Tagline */}
-    <p className="text-muted-foreground text-lg mb-4">
-      Do you even prompt bro!
-    </p>
+          {/* Tagline */}
+          <p className="text-muted-foreground text-lg mb-4">
+            Do you even prompt bro!
+          </p>
 
-    {/* Inspiring Lines */}
-    <div className="max-w-2xl mx-auto space-y-2">
-      <p className="text-foreground text-base">
-        🚀 Prompting is the new superpower — the language of the future.
-      </p>
-      <p className="text-muted-foreground text-base">
-        Every great prompt is a shortcut to learning, growth, and creativity.
-      </p>
-      <p className="text-muted-foreground text-base">
-        Read one you didn’t know before — and you’ll level up instantly.
-      </p>
-    </div>
-  </div>
-</header>
-
+          {/* Inspiring Lines */}
+          <div className="max-w-2xl mx-auto space-y-2">
+            <p className="text-foreground text-base">
+              🚀 Prompting is the new superpower — the language of the future.
+            </p>
+            <p className="text-muted-foreground text-base">
+              Every great prompt is a shortcut to learning, growth, and creativity.
+            </p>
+            <p className="text-muted-foreground text-base">
+              Read one you didn’t know before — and you’ll level up instantly.
+            </p>
+          </div>
+        </div>
+      </header>
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
@@ -92,15 +99,14 @@ const Index = () => {
             categories={categories}
             selectedCategory={selectedCategory}
             onCategorySelect={setSelectedCategory}
-             
           />
         </div>
 
         {/* Results Count */}
         <div className="mb-6">
           <p className="text-sm text-muted-foreground">
-            {filteredPrompts.length === 1 
-              ? "1 prompt found" 
+            {filteredPrompts.length === 1
+              ? "1 prompt found"
               : `${filteredPrompts.length} prompts found`}
           </p>
         </div>
@@ -120,7 +126,10 @@ const Index = () => {
             ))}
           </div>
         ) : (
-          <EmptyState searchQuery={searchQuery} selectedCategory={selectedCategory} />
+          <EmptyState
+            searchQuery={searchQuery}
+            selectedCategory={selectedCategory}
+          />
         )}
       </main>
     </div>
