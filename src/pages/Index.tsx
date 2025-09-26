@@ -5,7 +5,6 @@ import { PromptCard } from "@/components/PromptCard";
 import { EmptyState } from "@/components/EmptyState";
 import { usePrompts, getUniqueCategories, filterPrompts } from "@/hooks/usePrompts";
 import { Loader2 } from "lucide-react";
-import Image from "next/image";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -59,8 +58,8 @@ const Index = () => {
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-gradient-primary">
-                <Image
-                  src="/pof_logo.png" // ✅ place logo in /public folder
+                <img
+                  src="/pof_logo.png" // ✅ served from public folder
                   alt="Prompt Overflow Logo"
                   width={40}
                   height={40}
