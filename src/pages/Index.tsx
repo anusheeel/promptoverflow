@@ -61,7 +61,7 @@ const Index = () => {
                 src="/pof_logo.png"
                 alt="Prompt Overflow Logo"
                 width={240}   // made bigger
-                height={140}
+                height={40}
                 className="cursor-pointer"
               />
             </a>
