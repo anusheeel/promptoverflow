@@ -53,23 +53,23 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-gradient-card border-b border-border">
-        <div className="container mx-auto px-4 py-10 flex flex-col">
-          {/* ✅ Big Logo only */}
+        <div className="container mx-auto px-4 py-6 flex flex-col items-center text-center">
+          {/* ✅ Big Logo */}
           <img
             src="/pof_logo.png"
             alt="Prompt Overflow Logo"
-            width={200}
-            height={160}
-            className="mb-6"
+            width={180}
+            height={180}
+            className="mb-4"
           />
 
           {/* Sub tagline */}
-          <p className="text-muted-foreground text-lg mb-4">
+          <p className="text-muted-foreground text-lg mb-2">
             Do you even prompt bro !
           </p>
 
           {/* Hero tagline */}
-          <p className="text-foreground text-2xl font-semibold text-center max-w-2xl">
+          <p className="text-foreground text-2xl font-semibold max-w-2xl">
             Learn, grow and create one prompt at a time
           </p>
         </div>
