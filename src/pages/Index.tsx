@@ -53,36 +53,25 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-gradient-card border-b border-border">
-        <div className="container mx-auto px-4 py-10">
-          {/* Top Row: Logo + Title (left), space reserved for future nav (right) */}
-          <div className="flex items-center justify-between mb-6">
-            <a href="/" className="flex items-center gap-3">
-              <img
-                src="/pof_logo.png" // ✅ served from public folder
-                alt="Prompt Overflow Logo"
-                width={40}
-                height={40}
-                className="rounded-md"
-              />
-              <h1 className="text-3xl font-bold text-foreground">
-                Prompt Overflow
-              </h1>
-            </a>
-            {/* Future Nav Menu (placeholder) */}
-            <div></div>
-          </div>
+        <div className="container mx-auto px-4 py-10 flex flex-col items-center">
+          {/* ✅ Big Logo only */}
+          <img
+            src="/pof_logo.png"
+            alt="Prompt Overflow Logo"
+            width={160}
+            height={160}
+            className="mb-6"
+          />
 
-          {/* Sub tagline (left-aligned under title) */}
-          <p className="text-muted-foreground text-lg mb-6">
+          {/* Sub tagline */}
+          <p className="text-muted-foreground text-lg mb-4 text-center">
             Do you even prompt bro !
           </p>
 
-          {/* Hero tagline (centered across header) */}
-          <div className="flex justify-center">
-            <p className="text-foreground text-2xl font-semibold text-center max-w-2xl">
-              Learn, grow and create one prompt at a time
-            </p>
-          </div>
+          {/* Hero tagline */}
+          <p className="text-foreground text-2xl font-semibold text-center max-w-2xl">
+            Learn, grow and create one prompt at a time
+          </p>
         </div>
       </header>
 
