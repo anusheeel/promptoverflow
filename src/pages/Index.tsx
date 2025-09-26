@@ -53,7 +53,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-gradient-card border-b border-border">
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-4 py-1">
           {/* ✅ Logo + sub tagline stacked */}
           <div className="flex flex-col mb-6">
             <a href="/" className="inline-block">
