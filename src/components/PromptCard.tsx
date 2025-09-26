@@ -1,4 +1,4 @@
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
@@ -14,6 +14,7 @@ interface PromptCardProps {
 
 export const PromptCard = ({ title, description, category, tags, prompt }: PromptCardProps) => {
   const [copied, setCopied] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const handleCopy = async () => {
     try {
@@ -21,7 +22,7 @@ export const PromptCard = ({ title, description, category, tags, prompt }: Promp
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy text: ', err);
+      console.error("Failed to copy text: ", err);
     }
   };
 
@@ -79,10 +80,37 @@ export const PromptCard = ({ title, description, category, tags, prompt }: Promp
         )}
 
         {/* Prompt Preview */}
-        <div className="bg-muted rounded-lg p-3 border mt-auto">
-          <p className="text-sm text-muted-foreground font-mono leading-relaxed whitespace-pre-wrap break-words">
+        <div className="bg-muted rounded-lg p-3 border mt-auto relative">
+          <p
+            className={cn(
+              "text-sm text-muted-foreground font-mono leading-relaxed whitespace-pre-wrap break-words transition-all",
+              expanded ? "line-clamp-none" : "line-clamp-5"
+            )}
+          >
             {prompt}
           </p>
+
+          {/* Expand/Collapse button */}
+          {prompt.length > 200 && (
+            <div className="flex justify-end mt-2">
+              <Button
+                onClick={() => setExpanded(!expanded)}
+                size="sm"
+                variant="ghost"
+                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
+              >
+                {expanded ? (
+                  <>
+                    Show Less <ChevronUp className="h-3 w-3" />
+                  </>
+                ) : (
+                  <>
+                    Show More <ChevronDown className="h-3 w-3" />
+                  </>
+                )}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </article>
