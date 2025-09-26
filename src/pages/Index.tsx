@@ -55,7 +55,7 @@ const Index = () => {
       <header className="bg-gradient-card border-b border-border">
         <div className="container mx-auto">
           {/* ✅ Logo + sub tagline stacked */}
-          <div className="flex flex-col -mt-10">
+          <div className="flex flex-col -mt-10 -ml-6">
             <a href="/" className="inline-block">
               <img
                 src="/pof_logo.png"
