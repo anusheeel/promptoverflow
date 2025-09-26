@@ -65,7 +65,7 @@ const Index = () => {
                 className="cursor-pointer"
               />
             </a>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-muted-foreground text-lg -mt-2">
               Do you even prompt bro !
             </p>
           </div>
