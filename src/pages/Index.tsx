@@ -52,18 +52,33 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-          {/* Header */} 
-      <header className="bg-gradient-card border-b border-border"> 
-        <div className="container mx-auto px-4 py-8"> 
-          <div className="flex items-center gap-3 mb-2"> 
-            <div className="p-2 rounded-lg bg-gradient-primary"> <Sparkles className="h-6 w-6 text-white" /> 
-            </div> <h1 className="text-3xl font-bold text-foreground">Prompt Overflow</h1> 
-          </div> <p className="text-muted-foreground text-lg"> Do you even prompt bro ! </p> 
-          <p className="text-foreground text-2xl font-semibold text-center max-w-2xl">
-                Learn, grow and create one prompt at a time
-          </p>
-        </div> 
-      </header>
+       <header className="bg-gradient-card border-b border-border">
+  <div className="container mx-auto px-4 py-10">
+    {/* Top Row: Logo + Title (left), space reserved for future nav (right) */}
+    <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-gradient-primary">
+          <Sparkles className="h-6 w-6 text-white" />
+        </div>
+        <h1 className="text-3xl font-bold text-foreground">Prompt Overflow</h1>
+      </div>
+      {/* Future Nav Menu (placeholder) */}
+      <div></div>
+    </div>
+
+    {/* Sub tagline (left-aligned under title) */}
+    <p className="text-muted-foreground text-lg mb-6">
+      Do you even prompt bro !
+    </p>
+
+    {/* Hero tagline (centered across header) */}
+    <div className="flex justify-center">
+      <p className="text-foreground text-2xl font-semibold text-center max-w-2xl">
+        Learn, grow and create one prompt at a time
+      </p>
+    </div>
+  </div>
+</header>
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
