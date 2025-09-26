@@ -59,6 +59,9 @@ const Index = () => {
             <div className="p-2 rounded-lg bg-gradient-primary"> <Sparkles className="h-6 w-6 text-white" /> 
             </div> <h1 className="text-3xl font-bold text-foreground">Prompt Overflow</h1> 
           </div> <p className="text-muted-foreground text-lg"> Do you even prompt bro ! </p> 
+          <p className="text-foreground text-xl font-medium mt-2">
+                Learn, grow and create one prompt at a time
+          </p>
         </div> 
       </header>
 
