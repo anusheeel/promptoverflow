@@ -5,6 +5,7 @@ import { PromptCard } from "@/components/PromptCard";
 import { EmptyState } from "@/components/EmptyState";
 import { usePrompts, getUniqueCategories, filterPrompts } from "@/hooks/usePrompts";
 import { Loader2 } from "lucide-react";
+import Link from "next/link";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -54,26 +55,25 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <header className="bg-gradient-card border-b border-border">
         <div className="container mx-auto px-4 py-6">
-          {/* Top row: Logo + Sub tagline */}
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
+          {/* ✅ Logo + sub tagline stacked */}
+          <div className="flex flex-col items-center mb-6">
+            <Link href="/">
               <img
                 src="/pof_logo.png"
                 alt="Prompt Overflow Logo"
-                width={80}
-                height={80}
-                className="rounded-md"
+                width={120}
+                height={120}
+                className="cursor-pointer"
               />
-              <p className="text-muted-foreground text-lg">
-                Do you even prompt bro !
-              </p>
-            </div>
-            <div></div> {/* Placeholder for future nav */}
+            </Link>
+            <p className="text-muted-foreground text-lg mt-2">
+              Do you even prompt bro !
+            </p>
           </div>
 
-          {/* Hero tagline (centered below) */}
+          {/* ✅ Hero tagline, slightly smaller */}
           <div className="flex justify-center">
-            <h1 className="text-foreground text-3xl md:text-4xl font-bold text-center max-w-2xl">
+            <h1 className="text-foreground text-2xl md:text-3xl font-semibold text-center max-w-2xl">
               Learn, grow and create one prompt at a time
             </h1>
           </div>
