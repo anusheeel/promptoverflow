@@ -58,7 +58,7 @@ const Index = () => {
           <img
             src="/pof_logo.png"
             alt="Prompt Overflow Logo"
-            width={160}
+            width={200}
             height={160}
             className="mb-6"
           />
