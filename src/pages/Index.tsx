@@ -56,20 +56,18 @@ const Index = () => {
         <div className="container mx-auto px-4 py-10">
           {/* Top Row: Logo + Title (left), space reserved for future nav (right) */}
           <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-gradient-primary">
-                <img
-                  src="/pof_logo.png" // ✅ served from public folder
-                  alt="Prompt Overflow Logo"
-                  width={40}
-                  height={40}
-                  className="rounded-md"
-                />
-              </div>
+            <a href="/" className="flex items-center gap-3">
+              <img
+                src="/pof_logo.png" // ✅ served from public folder
+                alt="Prompt Overflow Logo"
+                width={40}
+                height={40}
+                className="rounded-md"
+              />
               <h1 className="text-3xl font-bold text-foreground">
                 Prompt Overflow
               </h1>
-            </div>
+            </a>
             {/* Future Nav Menu (placeholder) */}
             <div></div>
           </div>
