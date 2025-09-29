@@ -72,8 +72,8 @@ const Index = () => {
 
           {/* ✅ Hero tagline, slightly smaller */}
           <div className="flex justify-center">
-            <h1 className="text-foreground text-xl md:text-2xl font-semibold text-center max-w-2xl">
-              Learn, grow and create one prompt at a time
+            <h1 className="text-4xl md:text-5xl font-extrabold text-center max-w-3xl mx-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight tracking-tight">
+              Why waste a compute when you can cherrypick most effective prompts ?
             </h1>
           </div>
         </div>
