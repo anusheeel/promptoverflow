@@ -72,7 +72,9 @@ const Index = () => {
 
           {/* ✅ Hero tagline, slightly smaller */}
           <div className="flex justify-center">
-            <h1 className="text-2xl md:text-3xl font-bold text-center max-w-2xl mx-auto bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-transparent tracking-tight leading-snug">
+            <h1 className="text-2xl md:text-3xl font-semibold max-w-3xl text-left ml-12 -mt-6 
+  bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 
+  bg-clip-text text-transparent leading-snug tracking-tight drop-shadow-sm">
               Why waste a compute when you can cherrypick most effective prompts ?
             </h1>
           </div>
