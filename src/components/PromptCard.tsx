@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { PromptFormInputs } from "@/components/PromptFormInputs";
 
 interface PromptCardProps {
   title: string;
@@ -13,20 +12,53 @@ interface PromptCardProps {
   prompt: string;
 }
 
-export const PromptCard = ({ title, description, category, tags, prompt }: PromptCardProps) => {
+export const PromptCard = ({
+  title,
+  description,
+  category,
+  tags,
+  prompt,
+}: PromptCardProps) => {
   const [copied, setCopied] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [values, setValues] = useState<Record<string, string>>({});
 
-  const handleCopy = async (textToCopy: string) => {
-  try {
-    await navigator.clipboard.writeText(textToCopy);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  } catch (err) {
-    console.error("Failed to copy text: ", err);
-  }
-};
+  // 🔹 Regex: find all <input>...</input> fields in the prompt
+  const inputFields = Array.from(
+    prompt.matchAll(/<input>(.*?)<\/input>/gi),
+    (m) => m[1]
+  );
 
+  // 🔹 Cleanup label: remove "insert/paste" and brackets
+  const cleanLabel = (raw: string) =>
+    raw
+      .replace(/\[|\]/g, "")
+      .replace(/insert|paste/gi, "")
+      .trim()
+      .replace(/\b\w/g, (c) => c.toUpperCase());
+
+  // 🔹 Replace placeholders with user values on copy
+  const buildFinalPrompt = () => {
+    let finalPrompt = prompt;
+    inputFields.forEach((field) => {
+      const value = values[field] || `[${field}]`;
+      finalPrompt = finalPrompt.replaceAll(
+        `<input>${field}</input>`,
+        value
+      );
+    });
+    return finalPrompt;
+  };
+
+  const handleCopy = async (customPrompt?: string) => {
+    try {
+      await navigator.clipboard.writeText(customPrompt || buildFinalPrompt());
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+    }
+  };
 
   return (
     <article className="group bg-gradient-card rounded-xl border border-border p-6 shadow-soft hover:shadow-medium transition-all duration-200 hover:-translate-y-1 h-full flex flex-col">
@@ -42,12 +74,14 @@ export const PromptCard = ({ title, description, category, tags, prompt }: Promp
             </h3>
           </div>
           <Button
-            onClick={handleCopy}
+            onClick={() => handleCopy()}
             size="sm"
             variant={copied ? "default" : "outline"}
             className={cn(
               "shrink-0 transition-all duration-200",
-              copied ? "bg-accent text-accent-foreground" : "hover:bg-primary hover:text-primary-foreground"
+              copied
+                ? "bg-accent text-accent-foreground"
+                : "hover:bg-primary hover:text-primary-foreground"
             )}
             aria-label={copied ? "Copied!" : "Copy prompt"}
           >
@@ -91,11 +125,6 @@ export const PromptCard = ({ title, description, category, tags, prompt }: Promp
           >
             {prompt}
           </p>
-          {/* 🔥 Dynamic Input Fields */}
-          <PromptFormInputs
-          prompt={prompt}
-          onCopy={(finalPrompt) => handleCopy(finalPrompt)}
-         />
 
           {/* Expand/Collapse button */}
           {prompt.length > 200 && (
@@ -119,6 +148,28 @@ export const PromptCard = ({ title, description, category, tags, prompt }: Promp
             </div>
           )}
         </div>
+
+        {/* 🔹 Input Fields BELOW "Show More" */}
+        {expanded && inputFields.length > 0 && (
+          <div className="mt-4 space-y-3">
+            {inputFields.map((field, idx) => (
+              <div key={idx}>
+                <label className="block text-sm font-medium text-foreground mb-1">
+                  {cleanLabel(field)}
+                </label>
+                <input
+                  type="text"
+                  placeholder={`Enter ${cleanLabel(field)}`}
+                  value={values[field] || ""}
+                  onChange={(e) =>
+                    setValues({ ...values, [field]: e.target.value })
+                  }
+                  className="w-full p-2 text-sm text-foreground bg-card rounded-md border border-border shadow-sm focus:ring-2 focus:ring-primary focus:outline-none"
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </article>
   );
