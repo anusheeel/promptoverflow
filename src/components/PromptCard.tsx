@@ -20,16 +20,20 @@ export const PromptCard = ({
   prompt,
 }: PromptCardProps) => {
   const [copied, setCopied] = useState(false);
-  const [expanded, setExpanded] = useState(false);
+  const [expandedText, setExpandedText] = useState(false);
+  const [expandedInputs, setExpandedInputs] = useState(false);
   const [values, setValues] = useState<Record<string, string>>({});
 
-  // 🔹 Regex: find all <input>...</input> fields in the prompt
+  // 🔹 Find all <input>...</input> placeholders
   const inputFields = Array.from(
     prompt.matchAll(/<input>(.*?)<\/input>/gi),
     (m) => m[1]
   );
 
-  // 🔹 Cleanup label: remove "insert/paste" and brackets
+  // 🔹 Deduplicate input fields
+  const uniqueFields = Array.from(new Set(inputFields));
+
+  // 🔹 Cleanup label for display
   const cleanLabel = (raw: string) =>
     raw
       .replace(/\[|\]/g, "")
@@ -37,15 +41,12 @@ export const PromptCard = ({
       .trim()
       .replace(/\b\w/g, (c) => c.toUpperCase());
 
-  // 🔹 Replace placeholders with user values on copy
+  // 🔹 Replace placeholders with user inputs
   const buildFinalPrompt = () => {
     let finalPrompt = prompt;
-    inputFields.forEach((field) => {
+    uniqueFields.forEach((field) => {
       const value = values[field] || `[${field}]`;
-      finalPrompt = finalPrompt.replaceAll(
-        `<input>${field}</input>`,
-        value
-      );
+      finalPrompt = finalPrompt.replaceAll(`<input>${field}</input>`, value);
     });
     return finalPrompt;
   };
@@ -120,22 +121,22 @@ export const PromptCard = ({
           <p
             className={cn(
               "text-sm text-muted-foreground font-mono leading-relaxed whitespace-pre-wrap break-words transition-all",
-              expanded ? "line-clamp-none" : "line-clamp-5"
+              expandedText ? "line-clamp-none" : "line-clamp-5"
             )}
           >
             {prompt}
           </p>
 
-          {/* Expand/Collapse button */}
+          {/* Expand/Collapse button for text */}
           {prompt.length > 200 && (
             <div className="flex justify-end mt-2">
               <Button
-                onClick={() => setExpanded(!expanded)}
+                onClick={() => setExpandedText(!expandedText)}
                 size="sm"
                 variant="ghost"
                 className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
               >
-                {expanded ? (
+                {expandedText ? (
                   <>
                     Show Less <ChevronUp className="h-3 w-3" />
                   </>
@@ -149,25 +150,49 @@ export const PromptCard = ({
           )}
         </div>
 
-        {/* 🔹 Input Fields BELOW "Show More" */}
-        {expanded && inputFields.length > 0 && (
+        {/* 🔹 Input Fields */}
+        {uniqueFields.length > 0 && (
           <div className="mt-4 space-y-3">
-            {inputFields.map((field, idx) => (
-              <div key={idx}>
-                <label className="block text-sm font-medium text-foreground mb-1">
-                  {cleanLabel(field)}
-                </label>
-                <input
-                  type="text"
-                  placeholder={`Enter ${cleanLabel(field)}`}
-                  value={values[field] || ""}
-                  onChange={(e) =>
-                    setValues({ ...values, [field]: e.target.value })
-                  }
-                  className="w-full p-2 text-sm text-foreground bg-card rounded-md border border-border shadow-sm focus:ring-2 focus:ring-primary focus:outline-none"
-                />
+            {(expandedInputs ? uniqueFields : uniqueFields.slice(0, 2)).map(
+              (field, idx) => (
+                <div key={idx}>
+                  <label className="block text-sm font-medium text-foreground mb-1">
+                    {cleanLabel(field)}
+                  </label>
+                  <input
+                    type="text"
+                    placeholder={`Enter ${cleanLabel(field)}`}
+                    value={values[field] || ""}
+                    onChange={(e) =>
+                      setValues({ ...values, [field]: e.target.value })
+                    }
+                    className="w-full p-2 text-sm text-foreground bg-card rounded-md border border-border shadow-sm focus:ring-2 focus:ring-primary focus:outline-none"
+                  />
+                </div>
+              )
+            )}
+
+            {/* Expand/Collapse button for inputs */}
+            {uniqueFields.length > 2 && (
+              <div className="flex justify-end">
+                <Button
+                  onClick={() => setExpandedInputs(!expandedInputs)}
+                  size="sm"
+                  variant="ghost"
+                  className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
+                >
+                  {expandedInputs ? (
+                    <>
+                      Show Less Inputs <ChevronUp className="h-3 w-3" />
+                    </>
+                  ) : (
+                    <>
+                      Show More Inputs <ChevronDown className="h-3 w-3" />
+                    </>
+                  )}
+                </Button>
               </div>
-            ))}
+            )}
           </div>
         )}
       </div>
