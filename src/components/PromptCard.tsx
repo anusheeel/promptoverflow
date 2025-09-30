@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { PromptFormInputs } from "@/components/PromptFormInputs";
 
 interface PromptCardProps {
   title: string;
@@ -16,15 +17,16 @@ export const PromptCard = ({ title, description, category, tags, prompt }: Promp
   const [copied, setCopied] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(prompt);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy text: ", err);
-    }
-  };
+  const handleCopy = async (textToCopy: string) => {
+  try {
+    await navigator.clipboard.writeText(textToCopy);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  } catch (err) {
+    console.error("Failed to copy text: ", err);
+  }
+};
+
 
   return (
     <article className="group bg-gradient-card rounded-xl border border-border p-6 shadow-soft hover:shadow-medium transition-all duration-200 hover:-translate-y-1 h-full flex flex-col">
