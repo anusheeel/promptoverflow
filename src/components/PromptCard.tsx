@@ -91,6 +91,11 @@ export const PromptCard = ({ title, description, category, tags, prompt }: Promp
           >
             {prompt}
           </p>
+          {/* 🔥 Dynamic Input Fields */}
+          <PromptFormInputs
+          prompt={prompt}
+          onCopy={(finalPrompt) => handleCopy(finalPrompt)}
+         />
 
           {/* Expand/Collapse button */}
           {prompt.length > 200 && (
