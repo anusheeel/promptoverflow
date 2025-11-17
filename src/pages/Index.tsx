@@ -66,7 +66,7 @@ const Index = () => {
               />
             </a>
             <p className="text-muted-foreground text-lg -mt-16">
-              Do you even prompt bro ?
+              Prompt Directories for effective LLM response
             </p>
           </div>
         </div>
