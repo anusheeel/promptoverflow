@@ -1,7 +1,7 @@
 
 ## Project info
 
-**URL**: https//:promptoverflow.app
+**URL**: https://promptoverflow.app
 
 
 This project is built with:
